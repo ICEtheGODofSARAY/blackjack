@@ -10,7 +10,7 @@ dealer_points = 0
 dealer_cards = []
 player_cards = []
 player_answer = "нет"
-while player_points < 21:
+while player_points < 21 or player_answer == "да":
 
     if player_points < 21:
         a = random.choice(cards)
@@ -43,7 +43,8 @@ while player_points < 21:
                 player_points += 1
         print(player_cards)
         print(player_points)
-    if dealer_points < 21:
+        player_answer = input("Закончить набор? ")
+    if dealer_points < 21 and player_answer == "да":
         a = random.choice(cards)
         dealer_cards.append(a)
         if a == "2ч" or a == "2б" or a == "2п" or a == "2к":
@@ -74,9 +75,7 @@ while player_points < 21:
                 dealer_points += 1
         print(dealer_cards)
         print(dealer_points)
-        player_answer = input("Закончить набор? ")
-
-if player_points == 21 or dealer_points > 21:
-    print("ВЫ ВЫЙГРАЛИ")
-elif dealer_points == 21 or player_points > 21:
-    print("ВЫ ПРОИГРАЛИ")
+    if player_points == 21 or dealer_points > 21:
+        print("ВЫ ВЫЙГРАЛИ")
+    elif dealer_points == 21 or player_points > 21:
+        print("ВЫ ПРОИГРАЛИ")
