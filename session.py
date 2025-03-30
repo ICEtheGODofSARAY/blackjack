@@ -12,7 +12,7 @@ def player_loop() -> int:
     while player_answer != "да":
         random_card_name = random.choice(list(CARDS.keys()))
         if "Т" in random_card_name:
-            player_points += 11 if player_points <= 10 else 1
+            player_points += 11 if player_points <= 10 else 110
         else:
             player_cards.append(random_card_name)
             player_points += CARDS[random_card_name]

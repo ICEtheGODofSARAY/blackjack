@@ -38,9 +38,10 @@ def get_user_cash(user: str) -> int:
     content = get_content()
     content = content.split("\n")
     for row in content:
-        login, cash = row.split(":")
-        if login == user:
-            return int(cash)
+        if ":" in row:
+            login, cash = row.split(":")
+            if login == user:
+                return int(cash)
 
 
 def registration() -> str:

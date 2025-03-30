@@ -1,4 +1,4 @@
-from Utilits.file_handler import update_cash, registration
+from Utilits.file_handler import update_cash, registration, get_user_cash
 from session import player_loop, dealer_loop
 
 if __name__ == '__main__':
@@ -8,6 +8,9 @@ if __name__ == '__main__':
     play_more = "да"
     while play_more == "да":
         player_bet = int(input("Введите ставку: "))
+        while player_bet > get_user_cash(player_login):
+            print("но но но мистер фиш")
+            player_bet = int(input("Введите ставку: "))
         # Цикл игрока
         player_points = player_loop()
         if player_points == 21:
@@ -25,4 +28,5 @@ if __name__ == '__main__':
             elif dealer_points > player_points:
                 print("ВЫ ПРОИГРАЛИ")
                 update_cash(user=player_login, new_cash=-player_bet)
+        print(get_user_cash(player_login))
         play_more = input("Хотите играть дальше? (да/нет): ").lower()
