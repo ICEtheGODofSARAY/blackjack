@@ -1,4 +1,5 @@
 import random
+import time
 
 from config.cards import CARDS
 
@@ -12,8 +13,9 @@ def player_loop() -> int:
         random_card_name = random.choice(list(CARDS.keys()))
         if "Т" in random_card_name:
             player_points += 11 if player_points <= 10 else 1
-        player_cards.append(random_card_name)
-        player_points += CARDS[random_card_name]
+        else:
+            player_cards.append(random_card_name)
+            player_points += CARDS[random_card_name]
         print(f"Карты игрока:{player_cards}")
         print(f"Очки игрока:{player_points}")
         del CARDS[random_card_name]
@@ -37,4 +39,5 @@ def dealer_loop(player_points: int) -> int:
         print(f"Карты дилера:{dealer_cards}")
         print(f"Очки дилера:{dealer_points}")
         del CARDS[random_card_name]
+        time.sleep(2)
     return dealer_points
