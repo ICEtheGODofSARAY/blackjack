@@ -23,11 +23,12 @@ def update_cash(user: str, new_cash: int):
     new_content = ""
     content = content.split("\n")
     for row in content:
-        login, cash = row.split(":")
-        if login == user:
-            new_content += f"{login}:{cash + new_cash}\n"
-        else:
-            new_content += f"{login}:{cash}\n"
+        if ":" in row:
+            login, cash = row.split(":")
+            if login == user:
+                new_content += f"{login}:{int(cash) + int(new_cash)}\n"
+            else:
+                new_content += f"{login}:{cash}\n"
 
     with open(PLAYERS_TXT_PATH, "w") as file:
         file.write(f"{new_content}\n")
